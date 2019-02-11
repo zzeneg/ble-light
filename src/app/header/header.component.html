@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <span>BLE Light</span>
+  <span class="fill-space"></span>
+  <span *ngIf="deviceName$ | async as deviceName; else connect">
+    <button mat-flat-button [matMenuTriggerFor]="appMenu">{{deviceName}}</button>
+  </span>
+</mat-toolbar>
+
+<mat-menu #appMenu="matMenu" xPosition="after">
+  <button mat-menu-item (click)="onDisconnect()">Disconnect</button>
+</mat-menu>
+
+<ng-template #connect>
+  <button mat-flat-button color="primary" (click)="onConnect()">Connect</button>
+</ng-template>
